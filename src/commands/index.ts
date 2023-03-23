@@ -23,7 +23,11 @@ export const getCommands = async () => {
   const files = await subDirectories.map((subDirectory) => {
     const subDirectoryFile = readdirSync(
       join(__dirname, subDirectory.name)
-    ).filter((file) => file.includes("index"))[0];
+    ).filter(
+      (file) =>
+        file.includes(".js") ||
+        (file.includes(".ts") && !file.includes(".d.ts"))
+    )[0];
 
     return join(subDirectory.name, subDirectoryFile);
   });
