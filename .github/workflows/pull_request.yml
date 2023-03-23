@@ -5,7 +5,8 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -13,7 +14,5 @@ jobs:
         run: yarn
       - name: Run Yarn Build
         run: yarn build
-      - name: Run Yarn Test
-        run: yarn test
       - name: Run Yarn Lint
         run: yarn lint

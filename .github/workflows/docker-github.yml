@@ -4,7 +4,8 @@ on:
     types: [published]
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@master
       - name: Convert repository name to lower case
@@ -25,12 +26,12 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            multithefranky/na3s
+            multithefranky/lince-discord-bot
             ghcr.io/${{ github.repository }}
       - name: Publish to Registry
         uses: docker/build-push-action@v3
         with:
-          repository: ${{ env.IMAGE_REPOSITORY }}/na3s
+          repository: ${{ env.IMAGE_REPOSITORY }}/lince-discord-bot
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           tag_with_ref: true
