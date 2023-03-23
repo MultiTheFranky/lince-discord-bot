@@ -4,13 +4,20 @@ FROM node:16-alpine3.11
 # Set the working directory
 WORKDIR /app
 
+# Copy the source code
+COPY . /app
+
 # Copy package.json and yarn.lock
 COPY package.json /app 
 COPY yarn.lock /app
 
-RUN npm install -g -s --no-progress yarn && \
-    yarn && \
-    yarn build && \
+# Install dependencies
+RUN npm install yarn -g \
+    && \
+    yarn \
+    && \
+    yarn build \
+    && \
     yarn cache clean
 
 # Expose the port
