@@ -22,4 +22,4 @@ RUN yarn \
 EXPOSE 3000
 
 # Start the app
-CMD ["yarn", "serve"]
+CMD ["yarn", "server"]
