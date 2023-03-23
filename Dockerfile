@@ -12,9 +12,7 @@ COPY package.json /app
 COPY yarn.lock /app
 
 # Install dependencies
-RUN npm install yarn -g \
-    && \
-    yarn \
+RUN yarn \
     && \
     yarn build \
     && \
