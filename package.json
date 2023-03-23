@@ -1,0 +1,61 @@
+{
+  "name": "lince-discord-bot",
+  "version": "0.0.1",
+  "description": "A Discord Bot for Lince Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MultiTheFranky/lince-discord-bot"
+  },
+  "author": "Francisco Álamo García",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "yarn": ">=1.22.0"
+  },
+  "scripts": {
+    "postinstall": "husky install",
+    "precommit": "yarn lint && yarn prettier",
+    "prepush": "yarn build",
+    "dev": "tsnd --respawn src/server.ts",
+    "start": "yarn lint && ts-node src/server.ts",
+    "server": "node dist/server.js",
+    "build": "tsc",
+    "clean": "rimraf dist && rimraf log && rimraf db && rimraf node_modules && yarn",
+    "lint": "eslint src --ext .ts,.tsx",
+    "prettier": "prettier --write \"**/*.{ts,tsx}\"",
+    "audit": "yarn-audit-fix"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "prettier": "^2.8.5",
+    "simple-json-db": "^2.0.0",
+    "strip-ansi": "^6",
+    "typescript": "^5.0.2",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.1.2",
+    "@commitlint/config-conventional": "16.2.1",
+    "@types/node": "^18.15.3",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unicorn": "^46.0.0",
+    "husky": "8.0.1",
+    "nodemon": "^2.0.21",
+    "prettier": "2.7.1",
+    "rimraf": "^4.4.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "yarn-audit-fix": "9.3.10"
+  }
+}

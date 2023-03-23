@@ -1,0 +1,19 @@
+# Action to run on pull request creation
+name: Pull Request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Run Yarn
+        run: yarn
+      - name: Run Yarn Build
+        run: yarn build
+      - name: Run Yarn Test
+        run: yarn test
+      - name: Run Yarn Lint
+        run: yarn lint
