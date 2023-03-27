@@ -6,11 +6,8 @@ import {
   TextChannel,
   User,
 } from "discord.js";
-import path from "path";
 import { DiscordCommand } from "../../types/discord/types";
 import { writeToDB } from "../../database";
-
-const LINCE_LOGO = path.join(__dirname, "..", "..", "assets", "logo.png");
 
 const TEAMS = ["Aegis", "Bravo", "Delta", "Strider"];
 
@@ -270,7 +267,6 @@ export const command: DiscordCommand = {
         name: guildMember.nickname,
       })
       .setDescription(description)
-      .setThumbnail("attachment://lince.png")
       .addFields(
         { name: "Date", value: date!, inline: true },
         { name: "Editor", value: guildMember.nickname, inline: true }
@@ -280,7 +276,6 @@ export const command: DiscordCommand = {
       .setTimestamp()
       .setFooter({
         text: "Mission Briefing",
-        iconURL: "attachment://lince.png",
       });
 
     // Reply to the interaction
@@ -292,12 +287,6 @@ export const command: DiscordCommand = {
     // Send the event embed to the channel
     const message = await channel?.send({
       embeds: [eventEmbed],
-      files: [
-        {
-          attachment: LINCE_LOGO,
-          name: "lince.png",
-        },
-      ],
     });
 
     // Add the reactions to the embed
@@ -379,7 +368,6 @@ export const command: DiscordCommand = {
         name: message.embeds[0].author?.name ?? "",
       })
       .setDescription(message.embeds[0].description)
-      .setThumbnail("attachment://lince.png")
       .addFields(
         {
           name: "Date",
@@ -397,18 +385,11 @@ export const command: DiscordCommand = {
       .setTimestamp()
       .setFooter({
         text: "Mission Briefing",
-        iconURL: "attachment://lince.png",
       });
 
     // Edit the message
     await message.edit({
       embeds: [eventEmbed],
-      files: [
-        {
-          attachment: LINCE_LOGO,
-          name: "lince.png",
-        },
-      ],
     });
   },
 };
