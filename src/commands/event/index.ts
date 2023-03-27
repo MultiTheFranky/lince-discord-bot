@@ -184,24 +184,47 @@ export const command: DiscordCommand = {
     const link = interaction.options.getString("link");
 
     // Checks if any option is null
-    if (
-      !channel ||
-      !name ||
-      !date ||
-      !editor ||
-      !description ||
-      !image ||
-      !link
-    ) {
+    let errorMessage = "";
+    let error = false;
+    if (!channel) {
+      errorMessage += "Channel is null\n";
+      error = true;
+    }
+    if (!name) {
+      errorMessage += "Name is null\n";
+      error = true;
+    }
+    if (!date) {
+      errorMessage += "Date is null\n";
+      error = true;
+    }
+    if (!editor) {
+      errorMessage += "Editor is null\n";
+      error = true;
+    }
+    if (!description) {
+      errorMessage += "Description is null\n";
+      error = true;
+    }
+    if (!image) {
+      errorMessage += "Image is null\n";
+      error = true;
+    }
+    if (!link) {
+      errorMessage += "Link is null\n";
+      error = true;
+    }
+
+    if (error) {
       await interaction.reply({
-        content: "Something went wrong. Please try again.",
+        content: errorMessage,
         ephemeral: true,
       });
       return;
     }
 
     // Get the name of the user in the same way as is on the guild
-    const guildMember = await interaction.guild?.members.fetch(editor.id);
+    const guildMember = await interaction.guild?.members.fetch(editor!.id);
     if (!guildMember || !guildMember.nickname) {
       await interaction.reply({
         content: "Something went wrong. Please try again.",
@@ -230,10 +253,18 @@ export const command: DiscordCommand = {
 
     const players = await Promise.all(listOfPlayers);
 
+    const CLRole = await guild.roles.cache.find((role) => role.name === "CL");
+
+    let title = name;
+
+    if (CLRole) {
+      title = `${CLRole} ${name}`;
+    }
+
     // Create the event embed
     const eventEmbed = new EmbedBuilder()
       .setColor("#0099ff")
-      .setTitle(name)
+      .setTitle(title)
       .setURL(link)
       .setAuthor({
         name: guildMember.nickname,
@@ -241,11 +272,11 @@ export const command: DiscordCommand = {
       .setDescription(description)
       .setThumbnail("attachment://lince.png")
       .addFields(
-        { name: "Date", value: date, inline: true },
+        { name: "Date", value: date!, inline: true },
         { name: "Editor", value: guildMember.nickname, inline: true }
       )
       .addFields(players)
-      .setImage(image.url)
+      .setImage(image!.url)
       .setTimestamp()
       .setFooter({
         text: "Mission Briefing",
