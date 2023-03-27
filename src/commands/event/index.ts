@@ -252,21 +252,21 @@ export const command: DiscordCommand = {
 
     const CLRole = await guild.roles.cache.find((role) => role.name === "CL");
 
-    let title = name;
+    let mentionedDescription = description;
 
     if (CLRole) {
-      title = `${CLRole} ${name}`;
+      mentionedDescription = `${CLRole} ${description}`;
     }
 
     // Create the event embed
     const eventEmbed = new EmbedBuilder()
       .setColor("#0099ff")
-      .setTitle(title)
+      .setTitle(name)
       .setURL(link)
       .setAuthor({
         name: guildMember.nickname,
       })
-      .setDescription(description)
+      .setDescription(mentionedDescription)
       .addFields(
         { name: "Date", value: date!, inline: true },
         { name: "Editor", value: guildMember.nickname, inline: true }
