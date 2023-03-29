@@ -6,8 +6,8 @@ services:
     platform: linux/amd64
     container_name: lince-discord-bot
     volumes:
-      - "./log:/log"
-      - "./db:/db"
+      - "./log:/app/log"
+      - "./db:/app/db"
     env_file: .env
     ports:
       - "${PORT}:${PORT}"

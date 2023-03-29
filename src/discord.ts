@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 import logger from "./utils/logger";
 import {
   listenerOnInteractionCreate,
@@ -29,6 +29,7 @@ export const startDiscordBot = async () => {
       GatewayIntentBits.AutoModerationConfiguration,
       GatewayIntentBits.AutoModerationExecution,
     ],
+    partials: [Partials.Message, Partials.Reaction, Partials.Channel],
   });
 
   // Register all commands
