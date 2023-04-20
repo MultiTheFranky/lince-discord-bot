@@ -40,9 +40,17 @@ const parseMessage = (message: string) => {
  */
 export const startPterodactyl = async () => {
   const elasticSearchUrl = process.env.ELASTIC_SEARCH_URL;
-  if (!elasticSearchUrl)
+  const elasticSearchUsername = process.env.ELASTIC_SEARCH_USERNAME;
+  const elasticSearchPassword = process.env.ELASTIC_SEARCH_PASSWORD;
+  if (!elasticSearchUrl || !elasticSearchUsername || !elasticSearchPassword)
     throw new Error("Elastic Search URL not set in environment variables");
-  const elasticClient = new Client({ node: elasticSearchUrl });
+  const elasticClient = new Client({
+    node: elasticSearchUrl,
+    auth: {
+      username: elasticSearchUsername,
+      password: elasticSearchPassword,
+    },
+  });
   const pterodactylURL = process.env.PTERODACTYL_URL;
   const pterodactylClientToken = process.env.PTERODACTYL_CLIENT_TOKEN;
   if (!pterodactylURL || !pterodactylClientToken)
