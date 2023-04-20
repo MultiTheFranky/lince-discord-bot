@@ -50,6 +50,9 @@ export const startPterodactyl = async () => {
       username: elasticSearchUsername,
       password: elasticSearchPassword,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
   const pterodactylURL = process.env.PTERODACTYL_URL;
   const pterodactylClientToken = process.env.PTERODACTYL_CLIENT_TOKEN;
