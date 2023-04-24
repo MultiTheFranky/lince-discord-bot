@@ -9,7 +9,7 @@ import {
 import { DiscordCommand } from "../../types/discord/types";
 import { writeToDB } from "../../database";
 
-const TEAMS = ["Aegis", "Bravo", "Delta", "Strider"];
+const TEAMS = ["Bravo", "Delta", "Strider"];
 
 const getPlayers = async (guild: Guild, team: string) => {
   // The players are on a role with the name of the team
