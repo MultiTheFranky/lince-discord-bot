@@ -158,7 +158,7 @@ export const command: DiscordCommand = {
       )
       .setTimestamp()
       .setFooter({
-        text: "F1 Race",
+        text: mentionedDescription,
       });
 
     // Reply to the interaction

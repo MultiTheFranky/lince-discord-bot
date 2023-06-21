@@ -275,7 +275,7 @@ export const command: DiscordCommand = {
       .setImage(image!.url)
       .setTimestamp()
       .setFooter({
-        text: "Mission Briefing",
+        text: `${CLRole}`,
       });
 
     // Reply to the interaction
@@ -384,7 +384,7 @@ export const command: DiscordCommand = {
       .setImage(message.embeds[0].image?.url ?? "")
       .setTimestamp()
       .setFooter({
-        text: "Mission Briefing",
+        text: message.embeds[0].footer?.text ?? "",
       });
 
     // Edit the message
