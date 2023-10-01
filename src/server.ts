@@ -4,7 +4,7 @@ import { Client } from "discord.js";
 import logger from "./utils/logger";
 import { startDiscordBot } from "./discord";
 import { initDB } from "./database";
-import { startPterodactyl } from "./pterodactyl";
+// import { startPterodactyl } from "./pterodactyl";
 
 // eslint-disable-next-line import/no-mutable-exports
 export let client: Client;
@@ -24,7 +24,7 @@ config();
   client = await startDiscordBot();
 
   // Init pterodactyl
-  await startPterodactyl();
+  // await startPterodactyl();
 
   app.listen(process.env.PORT, () => {
     logger.info(`Listening on port ${process.env.PORT}`);
